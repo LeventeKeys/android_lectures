@@ -62,12 +62,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
         Log.d("Lesson3", "MainActivity onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
         Log.d("Lesson3", "MainActivity onRestoreInstanceState");
     }
 
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_start_intent_filter_activity:
                 Intent startSomeAction = new Intent("com.somniatores.activities.startSomeAction");
-                startSomeAction.putExtra("my_action", "Some parameters");
+                startSomeAction.putExtra("my_action", "Some parameters 123");
                 startActivity(startSomeAction);
                 break;
             default:

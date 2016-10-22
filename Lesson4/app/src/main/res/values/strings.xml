@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lesson4</string>
+    <string name="title_activity_shared_preferences">SharedPreferencesActivity</string>
+</resources>
