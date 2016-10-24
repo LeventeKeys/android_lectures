@@ -17,8 +17,8 @@
         </activity>
 
         <provider
-            android:name=".SimpleContentProvider"
-            android:authorities="simpleContentProvider"
+            android:name=".TaskContentProvider"
+            android:authorities="com.somniatores.lesson4"
             android:enabled="true"
             android:exported="true" />
 
@@ -31,6 +31,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.somniatores.lesson4.MainActivity" />
         </activity>
+        <activity android:name=".TaskActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

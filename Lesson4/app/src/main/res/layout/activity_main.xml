@@ -17,4 +17,13 @@
         android:id="@+id/shared_preference_activity"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Start task editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shared_preference_activity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/button_task_activity" />
 </RelativeLayout>
