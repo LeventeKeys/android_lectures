@@ -12,9 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class SharedPreferencesActivity extends AppCompatActivity {
+
+    private ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +38,34 @@ public class SharedPreferencesActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 sp.edit().putString(keyEditText.getText().toString(),
                         valueText.getText().toString());
+
+                List<String> list = getAllValues();
+                for (String s : list) {
+                    adapter.insert(s, adapter.getCount());
+                }
+                adapter.notifyDataSetChanged();
+
             }
         });
 
-        Map<String, String> all = (Map<String, String>) sp.getAll();
         ListView listView = (ListView) findViewById(R.id.sharedPreferenceListView);
-//        listView.setAdapter(new ArrayAdapter<String>(this, 10, ""));
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getAllValues());
+        listView.setAdapter(adapter);
 
     }
+
+    private List<String> getAllValues() {
+        SharedPreferences sharedPreferences = getSharedPreferences("test", 0);
+        Map<String, String> all = (Map<String, String>) sharedPreferences.getAll();
+        List<String> values = new ArrayList<>();
+        for (Map.Entry<String, String> entry : all.entrySet()) {
+            values.add(entry.getKey() + " - " + entry.getValue());
+        }
+
+        return values;
+    }
+
 
 }
