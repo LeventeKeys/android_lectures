@@ -1,7 +1,6 @@
 package com.somniatores.lesson4;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -30,6 +29,8 @@ public class TaskActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
+
+        getIntent().getStringExtra("user-name");
 
         list = (ListView) findViewById(R.id.list_of_task);
         createTaskButton = (Button) findViewById(R.id.button_create_task);

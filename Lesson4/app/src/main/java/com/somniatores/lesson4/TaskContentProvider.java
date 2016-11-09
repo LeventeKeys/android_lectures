@@ -5,44 +5,35 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static com.somniatores.lesson4.TaskSQLiteHelper.*;
-
 public class TaskContentProvider extends ContentProvider {
-    public TaskContentProvider() {
+    public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/tasks";
+    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/tasks";
+
+    static final String AUTHORITY = "com.somniatores.lesson4";
+    static final String BASE_PATH = "tasks";
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
+    // used for the UriMacher
+    private static final int TASKS = 10;
+    private static final int TASK_ID = 20;
+    private static final UriMatcher sURIMatcher = new UriMatcher(
+            UriMatcher.NO_MATCH);
+
+    static {
+        sURIMatcher.addURI(AUTHORITY, BASE_PATH, TASKS);
+        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", TASK_ID);
     }
 
     // database
     private TaskDataSource database;
 
-    // used for the UriMacher
-    private static final int TASKS = 10;
-    private static final int TASK_ID = 20;
-
-    static final String AUTHORITY = "com.somniatores.lesson4";
-    static final String BASE_PATH = "tasks";
-
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
-            + "/" + BASE_PATH);
-
-
-    public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
-            + "/tasks";
-    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
-            + "/tasks";
-
-    private static final UriMatcher sURIMatcher = new UriMatcher(
-            UriMatcher.NO_MATCH);
-    static {
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH, TASKS);
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", TASK_ID);
+    public TaskContentProvider() {
+        new ArrayList<>().size()logm
     }
 
     @Override
@@ -59,13 +50,15 @@ public class TaskContentProvider extends ContentProvider {
         // check if the caller has requested a column which does not exists
         checkColumns(projection);
 
+
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
             case TASKS:
                 return database.getAll();
             case TASK_ID:
+                long id = Long.valueOf(uri.getLastPathSegment());
                 // adding the ID to the original query
-                return database.getAll();
+                return database.get(id);
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
