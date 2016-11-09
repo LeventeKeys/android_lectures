@@ -62,7 +62,7 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
             binding.firstAnswer.setOnClickListener(checkAnswer(0));
             binding.secondAnswer.setOnClickListener(checkAnswer(1));
             binding.thirdAnswer.setOnClickListener(checkAnswer(2));
-            binding.forthAnswer.setOnClickListener(checkAnswer(3));r
+            binding.forthAnswer.setOnClickListener(checkAnswer(3));
 
         }
 
