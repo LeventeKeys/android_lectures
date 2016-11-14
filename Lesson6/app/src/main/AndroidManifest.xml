@@ -8,33 +8,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
-        </activity>
-
-        <activity android:name=".view.test.TestActivity">
+        <activity android:name=".views.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".view.SearchResultActivity"
-            android:label="@string/title_activity_search_result"
-            android:parentActivityName=".view.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.somniatores.lesson6.view.MainActivity" />
-        </activity>
-        <activity
-            android:name=".view.SongContentActivity"
-            android:label="@string/title_activity_song_content"
-            android:parentActivityName=".view.SearchResultActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.somniatores.lesson6.view.SearchResultActivity" />
-        </activity>
     </application>
-
 </manifest>

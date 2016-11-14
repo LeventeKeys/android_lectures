@@ -1,23 +1,25 @@
-package com.somniatores.lesson6.view.test;
+package com.somniatores.lesson6.views;
 
-import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.graphics.Color;
 
+import com.somniatores.lesson6.Application;
 import com.somniatores.lesson6.BR;
-
+import com.somniatores.models.DictionaryTest;
+import com.somniatores.services.DictionaryTestService;
 
 /**
  * Created by locisvv on 09.11.2016.
  */
 
-public class TestRowView extends BaseObservable {
+public class DictionaryTestRowView extends BaseObservable {
+    private static DictionaryTestService testService = Application.testService;
 
-    private Test test;
+    private DictionaryTest test;
     private int color = Color.BLACK;
 
-    public TestRowView(Test test) {
+    public DictionaryTestRowView(DictionaryTest test) {
         this.test = test;
     }
 
@@ -33,9 +35,8 @@ public class TestRowView extends BaseObservable {
         notifyPropertyChanged(BR.color);
     }
 
-    public void checkAnswer(int answer) {
-        String actual = test.getAnswers().get(answer);
-        if (test.getExpectedAnswer().equals(actual)) {
+    public void checkAnswer(int actualAnswer) {
+        if (testService.checkAnswer(test, test.getPossibleAnswers().get(actualAnswer))) {
             setColor(Color.parseColor("#64DD17"));
         } else {
             setColor(Color.parseColor("#D84315"));

@@ -1,4 +1,4 @@
-package com.somniatores.lesson6.view.test;
+package com.somniatores.lesson6.views;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.somniatores.lesson6.R;
 import com.somniatores.lesson6.databinding.TestRowBinding;
+import com.somniatores.models.DictionaryTest;
 
 import java.util.List;
 
@@ -16,11 +17,10 @@ import java.util.List;
  */
 
 public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> {
-
     private Context context;
-    private List<Test> tests;
+    private List<DictionaryTest> tests;
 
-    public TestsAdapter(Context context, List<Test> tests) {
+    public TestsAdapter(Context context, List<DictionaryTest> tests) {
         this.context = context;
         this.tests = tests;
     }
@@ -40,7 +40,6 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         holder.bindTest(tests.get(position));
     }
 
@@ -58,9 +57,9 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
             this.binding = binding;
         }
 
-        public void bindTest(Test test) {
+        public void bindTest(DictionaryTest test) {
             binding.setTest(test);
-            binding.setPresenter(new TestRowView(test));
+            binding.setPresenter(new DictionaryTestRowView(test));
         }
     }
 }
